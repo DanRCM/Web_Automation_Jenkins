@@ -1,10 +1,10 @@
 pipeline {
     agent any
 
-    environment {
-            USERNAME = "standard_user"
-            PASSWORD = "secret_sauce"
-        }
+    parameters {
+        string(name: 'USERNAME', defaultValue: "standard_user", description: 'user for test')
+        string(name: 'PASSWORD', defaultValue: "secret_sauce", description: 'password for test')
+    }
 
     tools {
         maven "M2"
@@ -13,33 +13,39 @@ pipeline {
     stages {
         stage('Clone and Fetch') {
             steps {
-                git branch: 'main', url: 'https://github.com/DanRCM/Web_Automation_Jenkins'
+                script {
+                    // Clone and fetch steps
+                    git branch: 'main', url: 'https://github.com/DanRCM/Web_Automation_Jenkins'
+                }
             }
         }
 
-        stage('Compile Application') {
+        stage('Compile') {
             steps {
-                sh "mvn clean install"
+                script {
+                    sh "mvn -B -DskipTests clean package"
+                }
             }
         }
 
         stage('Execute Tests') {
-                    steps {
-                        script {
-                            sh "mvn test -DUSERNAME=${USERNAME} -DPASSWORD=${PASSWORD}"
-                        }
-                    }
-                    post {
-                        always{
-                            allure([
-                            includeProperties: false,
-                            jdk: '',
-                            properties: [],
-                            reportBuildPolicy: 'ALWAYS',
-                            results: [[path: '*/allure-results']]
-                            ])
-                        }
-                    }
+            steps {
+                script {
+                    // Run the test suite
+                    sh "mvn test -DUSERNAME=${USERNAME} -DPASSWORD=${PASSWORD}"
+                }
+            }
+            post {
+                always{
+                    allure([
+                    includeProperties: false,
+                    jdk: '',
+                    properties: [],
+                    reportBuildPolicy: 'ALWAYS',
+                    results: [[path: '*/allure-results']]
+                    ])
+                }
+            }
         }
     }
 }

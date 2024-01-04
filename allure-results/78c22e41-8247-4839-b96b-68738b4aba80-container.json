@@ -1,0 +1,1 @@
+{"uuid":"78c22e41-8247-4839-b96b-68738b4aba80","name":"com.globant.web.test.LogoutTest","children":["64ed5d0c-b4ad-411b-b4cd-9ee3187a46cc"],"befores":[{"name":"setUp","status":"passed","stage":"finished","description":"","steps":[],"attachments":[],"parameters":[],"start":1704411819619,"stop":1704411821174}],"afters":[],"start":1704411819522,"stop":1704411824520}
