@@ -1,0 +1,45 @@
+pipeline {
+    agent any
+
+    environment {
+            USERNAME = "standard_user"
+            PASSWORD = "secret_sauce"
+        }
+
+    tools {
+        maven "M2"
+    }
+
+    stages {
+        stage('Clone and Fetch') {
+            steps {
+                git branch: 'main', url: 'https://github.com/mntoala/jenkins_POM_practice.git'
+            }
+        }
+
+        stage('Compile Application') {
+            steps {
+                bat "mvn -B -DskipTests clean package"
+            }
+        }
+
+        stage('Execute Tests') {
+                    steps {
+                        script {
+                            bat "mvn test -DUSERNAME=${USERNAME} -DPASSWORD=${PASSWORD}"
+                        }
+                    }
+                    post {
+                        always{
+                            allure([
+                            includeProperties: false,
+                            jdk: '',
+                            properties: [],
+                            reportBuildPolicy: 'ALWAYS',
+                            results: [[path: '*/allure-results']]
+                            ])
+                        }
+                    }
+        }
+    }
+}
