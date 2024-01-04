@@ -1,0 +1,9 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="MyTestSuite">
+    <test name="JenkinsTests">
+        <classes>
+            <class name="com.globant.web.test.PurchaseTest" />
+            <class name="com.globant.web.test.AddRemoveTest" />
+        </classes>
+    </test>
+</suite>
