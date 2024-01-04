@@ -13,20 +13,20 @@ pipeline {
     stages {
         stage('Clone and Fetch') {
             steps {
-                git branch: 'main', url: 'https://github.com/mntoala/jenkins_POM_practice.git'
+                git branch: 'main', url: 'https://github.com/DanRCM/Web_Automation_Jenkins'
             }
         }
 
         stage('Compile Application') {
             steps {
-                bat "mvn -B -DskipTests clean package"
+                sh "mvn clean install"
             }
         }
 
         stage('Execute Tests') {
                     steps {
                         script {
-                            bat "mvn test -DUSERNAME=${USERNAME} -DPASSWORD=${PASSWORD}"
+                            sh "mvn test -DUSERNAME=${USERNAME} -DPASSWORD=${PASSWORD}"
                         }
                     }
                     post {
