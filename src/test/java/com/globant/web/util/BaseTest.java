@@ -24,7 +24,7 @@ public class BaseTest {
         yourCartPage = new YourCartPage(driver);
         finishPage = new FinishPage(driver);
         overViewPage = new OverViewPage(driver);
-//        System.out.println("Your webpage user is:"+ System.getProperty("USERNAME"));
+        System.out.println("hola aqui toy");
 //        System.out.println("Your webpage password is:"+ System.getProperty("PASSWORD"));
     }
 
