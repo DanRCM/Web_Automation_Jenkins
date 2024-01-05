@@ -8,7 +8,6 @@ import org.testng.annotations.Test;
 public class PurchaseTest extends BaseTest{
     @Test
     public void LoginPage() {
-
         loginPage.enterLoginPage(username,password);
         productPage.addProduct();
         yourCartPage.clickOncheckout();
