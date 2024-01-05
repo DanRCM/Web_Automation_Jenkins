@@ -1,0 +1,1 @@
+{"uuid":"eb33de16-c51c-409a-8833-373bbd54fd89","name":"com.globant.web.test.AddRemoveTest","children":["6d6f79b5-c3ec-4ba1-abbd-cfc20482a7e0"],"befores":[{"name":"setUp","status":"passed","stage":"finished","description":"","steps":[],"attachments":[],"parameters":[],"start":1704412411039,"stop":1704412411816}],"afters":[],"start":1704412398400,"stop":1704412412651}

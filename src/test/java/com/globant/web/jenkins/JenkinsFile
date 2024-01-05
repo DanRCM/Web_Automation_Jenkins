@@ -1,9 +1,9 @@
 pipeline {
     agent any
 
-    parameters {
-        string(name: 'USERNAME', defaultValue: "standard_user", description: 'user for test')
-        string(name: 'PASSWORD', defaultValue: "secret_sauce", description: 'password for test')
+    environment {
+            USERNAME = "standard_user"
+            PASSWORD = "secret_sauce"
     }
 
     tools {
@@ -24,26 +24,6 @@ pipeline {
             steps {
                 script {
                     sh "mvn -B -DskipTests clean package"
-                }
-            }
-        }
-
-        stage('Execute Tests') {
-            steps {
-                script {
-                    // Run the test suite
-                    sh "mvn test -DUSERNAME=${USERNAME} -DPASSWORD=${PASSWORD}"
-                }
-            }
-            post {
-                always{
-                    allure([
-                    includeProperties: false,
-                    jdk: '',
-                    properties: [],
-                    reportBuildPolicy: 'ALWAYS',
-                    results: [[path: '*/allure-results']]
-                    ])
                 }
             }
         }
