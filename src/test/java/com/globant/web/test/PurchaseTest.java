@@ -6,9 +6,10 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 
 public class PurchaseTest extends BaseTest{
-    @Test(dataProvider = "LoginDataProvider", dataProviderClass = DataProviderTest.class)
-    public void LoginPage(String user, String psw) {
-        loginPage.enterLoginPage(user,psw);
+    @Test
+    public void LoginPage() {
+
+        loginPage.enterLoginPage(username,password);
         productPage.addProduct();
         yourCartPage.clickOncheckout();
     }
