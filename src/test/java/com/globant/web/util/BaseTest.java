@@ -7,8 +7,8 @@ import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeClass;
 
 public class BaseTest {
-    public static final String username = System.getenv("USERNAME");
-    public static final String password = System.getenv("PASSWORD");
+//    public static final String username = System.getenv("USERNAME");
+//    public static final String password = System.getenv("PASSWORD");
     public WebDriver driver = new ChromeDriver();
     public LoginPage loginPage;
     public ProductPage productPage;
@@ -24,8 +24,8 @@ public class BaseTest {
         yourCartPage = new YourCartPage(driver);
         finishPage = new FinishPage(driver);
         overViewPage = new OverViewPage(driver);
-        System.out.println("Your webpage user is:"+ System.getProperty("USERNAME"));
-        System.out.println("Your webpage password is:"+ System.getProperty("PASSWORD"));
+//        System.out.println("Your webpage user is:"+ System.getProperty("USERNAME"));
+//        System.out.println("Your webpage password is:"+ System.getProperty("PASSWORD"));
     }
 
     @AfterTest
