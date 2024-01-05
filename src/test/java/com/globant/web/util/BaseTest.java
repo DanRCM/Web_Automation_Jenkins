@@ -9,8 +9,8 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 
 public class BaseTest {
-//    public static final String username = System.getenv("USERNAME");
-//    public static final String password = System.getenv("PASSWORD");
+    public static final String username = System.getenv("USERNAME");
+    public static final String password = System.getenv("PASSWORD");
     public WebDriver driver = new ChromeDriver();
     public LoginPage loginPage;
     public ProductPage productPage;

@@ -27,5 +27,23 @@ pipeline {
                 }
             }
         }
+        stage('Execute Tests') {
+            steps {
+                script {
+                    sh "mvn test -DUSERNAME=${USERNAME} -DPASSWORD=${PASSWORD}"
+                                }
+                            }
+            post {
+                always{
+                     allure([
+                        includeProperties: false,
+                        jdk: '',
+                        properties: [],
+                        reportBuildPolicy: 'ALWAYS',
+                        results: [[path: '*/allure-results']]
+                                    ])
+                            }
+                     }
+            }
     }
 }
